@@ -209,7 +209,7 @@ func (c *client) readResponse(ctx context.Context, resp *ResponsePipe, req *Requ
 	// readloop in goroutine
 	go func() {
 	readLoop:
-		for {
+		for c.conn != nil {
 			if err := rec.read(c.conn.rwc); err != nil {
 				break
 			}
